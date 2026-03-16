@@ -4,43 +4,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti</title>
+<title>Para Eli</title>
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 body{
-font-family: 'Segoe UI', sans-serif;
-background: linear-gradient(135deg,#f9d5e5,#fceabb);
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#f9d5e5,#fceabb);
 text-align:center;
 margin:0;
-padding:40px;
+padding:20px;
+overflow-x:hidden;
+}
+
+/* corazones flotando */
+
+body::before{
+content:"❤️ ❤️ ❤️ ❤️ ❤️";
+position:fixed;
+top:-50px;
+left:0;
+width:100%;
+font-size:30px;
+animation:flotar 12s linear infinite;
+opacity:.25;
+}
+
+@keyframes flotar{
+0%{transform:translateY(-50px)}
+100%{transform:translateY(120vh)}
 }
 
 .container{
-max-width:900px;
+max-width:700px;
 margin:auto;
 background:white;
-padding:35px;
-border-radius:15px;
+padding:25px;
+border-radius:18px;
 box-shadow:0 10px 30px rgba(0,0,0,0.15);
+animation:fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 h1{
 margin-bottom:10px;
-font-size:32px;
+font-size:28px;
 }
 
 .mensaje{
-font-size:18px;
+font-size:17px;
 color:#555;
-margin-bottom:25px;
+margin-bottom:20px;
+padding:0 10px;
 }
 
+/* reproductor */
+
 .audio-box{
-background:#f7f7f7;
+background:linear-gradient(145deg,#fff,#ffe6ec);
 padding:20px;
-border-radius:10px;
+border-radius:14px;
 margin-bottom:30px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:.3s;
+}
+
+.audio-box:hover{
+transform:scale(1.02);
 }
 
 audio{
@@ -48,23 +92,110 @@ width:100%;
 margin-top:10px;
 }
 
+/* carta */
+
 .carta-img{
 width:100%;
-max-width:500px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
+max-width:420px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
 margin-top:15px;
+transition:.4s;
 }
+
+.carta-img:hover{
+transform:scale(1.03);
+}
+
+/* botones */
 
 .buttons{
 margin-top:20px;
 }
 
 button{
-padding:12px 25px;
-margin:10px;
-font-size:16px;
+padding:12px 22px;
+margin:8px;
+font-size:15px;
 border:none;
+background:#ff4d6d;
+color:white;
+border-radius:10px;
+cursor:pointer;
+transition:.25s;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+button:hover{
+background:#e63956;
+transform:scale(1.05);
+}
+
+/* ajustes para celular */
+
+@media(max-width:600px){
+
+.container{
+padding:20px;
+}
+
+h1{
+font-size:24px;
+}
+
+.mensaje{
+font-size:16px;
+}
+
+button{
+width:90%;
+font-size:16px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Para Eli ❤️</h1>
+
+<div class="audio-box">
+<p class="mensaje">
+Grabé estas canciones para ti porque sé que te gustan.  
+Con mucho cariño.
+</p>
+
+<audio controls>
+<source src="Audio_2026_03_16_01_08_32.mp3" type="audio/mpeg">
+Tu navegador no soporta audio.
+</audio>
+
+<div class="buttons">
+<a href="Audio_2026_03_16_01_08_32.mp3" download>
+<button>Descargar Canciones</button>
+</a>
+</div>
+
+</div>
+
+<h2>Espero puedas leer esto</h2>
+
+<img src="carta.jpg" class="carta-img">
+
+<div class="buttons">
+<a href="Para Liz 16 Marzo 26.pdf" download>
+<button>Descargar carta</button>
+</a>
+</div>
+
+</div>
+
+</body>
+</html>border:none;
 background:#ff4d6d;
 color:white;
 border-radius:8px;

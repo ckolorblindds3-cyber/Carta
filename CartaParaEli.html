@@ -9,8 +9,8 @@
 <style>
 
 body{
-font-family: Arial, sans-serif;
-background:#f4f4f4;
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg,#f9d5e5,#fceabb);
 text-align:center;
 margin:0;
 padding:40px;
@@ -20,26 +20,40 @@ padding:40px;
 max-width:900px;
 margin:auto;
 background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
 h1{
+margin-bottom:10px;
+font-size:32px;
+}
+
+.mensaje{
+font-size:18px;
+color:#555;
 margin-bottom:25px;
 }
 
-.pdf-viewer{
-width:100%;
-height:600px;
-border:none;
-border-radius:6px;
-margin-bottom:20px;
+.audio-box{
+background:#f7f7f7;
+padding:20px;
+border-radius:10px;
+margin-bottom:30px;
 }
 
 audio{
-margin-top:20px;
 width:100%;
+margin-top:10px;
+}
+
+.carta-img{
+width:100%;
+max-width:500px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+margin-top:15px;
 }
 
 .buttons{
@@ -51,14 +65,16 @@ padding:12px 25px;
 margin:10px;
 font-size:16px;
 border:none;
-background:#333;
+background:#ff4d6d;
 color:white;
-border-radius:6px;
+border-radius:8px;
 cursor:pointer;
+transition:0.3s;
 }
 
 button:hover{
-background:#555;
+background:#e63956;
+transform:scale(1.05);
 }
 
 </style>
@@ -68,17 +84,13 @@ background:#555;
 
 <div class="container">
 
-<h1>Para ti</h1>
+<h1>Para ti ❤️</h1>
 
-<iframe class="pdf-viewer" src="Para Liz 16 Marzo 26.pdf"></iframe>
-
-<div class="buttons">
-<a href="Para Liz 16 Marzo 26.pdf" download>
-<button>Descargar carta</button>
-</a>
-</div>
-
-<h2>Audio</h2>
+<div class="audio-box">
+<p class="mensaje">
+Grabé estas canciones para ti porque sé que te gustan.  
+Con mucho cariño.
+</p>
 
 <audio controls>
 <source src="Audio_2026_03_16_01_08_32.mp3" type="audio/mpeg">
@@ -88,6 +100,18 @@ Tu navegador no soporta audio.
 <div class="buttons">
 <a href="Audio_2026_03_16_01_08_32.mp3" download>
 <button>Descargar audio</button>
+</a>
+</div>
+
+</div>
+
+<h2>La carta</h2>
+
+<img src="carta.jpg" class="carta-img">
+
+<div class="buttons">
+<a href="Para Liz 16 Marzo 26.pdf" download>
+<button>Descargar carta</button>
 </a>
 </div>
 

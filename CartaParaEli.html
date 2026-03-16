@@ -10,61 +10,202 @@
 
 *{
 box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 body{
 font-family:'Segoe UI',sans-serif;
 background:linear-gradient(135deg,#f9d5e5,#fceabb);
 text-align:center;
-margin:0;
 padding:20px;
-overflow-x:hidden;
-}
-
-/* corazones flotando */
-
-body::before{
-content:"❤️ ❤️ ❤️ ❤️ ❤️";
-position:fixed;
-top:-50px;
-left:0;
-width:100%;
-font-size:30px;
-animation:flotar 12s linear infinite;
-opacity:.25;
-}
-
-@keyframes flotar{
-0%{transform:translateY(-50px)}
-100%{transform:translateY(120vh)}
 }
 
 .container{
-max-width:700px;
+max-width:600px;
 margin:auto;
 background:white;
 padding:25px;
 border-radius:18px;
 box-shadow:0 10px 30px rgba(0,0,0,0.15);
-animation:fadeIn 1.2s ease;
+animation:fade 1s ease;
 }
 
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+@keyframes fade{
+from{opacity:0;transform:translateY(15px)}
+to{opacity:1}
 }
 
 h1{
+font-size:26px;
 margin-bottom:10px;
-font-size:28px;
 }
 
+.mensaje{
+font-size:16px;
+color:#555;
+margin-bottom:20px;
+}
+
+.corazon{
+font-size:28px;
+margin-bottom:10px;
+}
+
+/* reproductor compacto */
+
+.player{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+background:#fff0f3;
+padding:15px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+.playBtn{
+background:#ff4d6d;
+border:none;
+color:white;
+font-size:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+cursor:pointer;
+}
+
+.playBtn:hover{
+background:#e63956;
+}
+
+audio{
+display:none;
+}
+
+/* botones */
+
+.buttons{
+margin-top:15px;
+}
+
+.download-btn{
+display:inline-block;
+padding:12px 20px;
+margin:8px;
+background:linear-gradient(135deg,#ff4d6d,#ff758f);
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-size:15px;
+font-weight:500;
+transition:.25s;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.download-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 18px rgba(0,0,0,0.2);
+}
+
+/* carta */
+
+.carta-img{
+width:100%;
+max-width:420px;
+margin-top:15px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+@media(max-width:500px){
+
+.container{
+padding:20px;
+}
+
+.download-btn{
+width:90%;
+display:block;
+margin:10px auto;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="corazon">❤️</div>
+
+<h1>Para Eli</h1>
+
+<p class="mensaje">
+Grabé estas canciones para ti porque sé que te gustan.  
+Con mucho cariño.
+</p>
+
+<div class="player">
+
+<button class="playBtn" onclick="toggleAudio()">▶</button>
+
+<span>Canciones para ti</span>
+
+</div>
+
+<audio id="audio" autoplay>
+<source src="Audio_2026_03_16_01_08_32.mp3" type="audio/mpeg">
+</audio>
+
+<div class="buttons">
+<a href="Audio_2026_03_16_01_08_32.mp3" download class="download-btn">
+Descargar Canciones
+</a>
+</div>
+
+<h2 style="margin-top:25px">Espero puedas leer esto</h2>
+
+<img src="carta.jpg" class="carta-img">
+
+<div class="buttons">
+<a href="Para Liz 16 Marzo 26.pdf" download class="download-btn">
+Descargar Carta
+</a>
+</div>
+
+</div>
+
+<script>
+
+let audio = document.getElementById("audio");
+let btn = document.querySelector(".playBtn");
+
+function toggleAudio(){
+
+if(audio.paused){
+audio.play();
+btn.innerHTML="⏸";
+}else{
+audio.pause();
+btn.innerHTML="▶";
+}
+
+}
+
+/* intento autoplay */
+
+window.addEventListener("load",()=>{
+audio.play().catch(()=>{});
+});
+
+</script>
+
+</body>
+</html>
 .mensaje{
 font-size:17px;
 color:#555;

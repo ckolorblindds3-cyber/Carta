@@ -16,52 +16,82 @@ padding:0;
 
 body{
 font-family:'Segoe UI',sans-serif;
-background:radial-gradient(circle at center, #0a0a0a, #000000);
+background:radial-gradient(circle at center, #050505, #000000);
 color:white;
 text-align:center;
 overflow:hidden;
+perspective:1000px;
 }
 
-/* efecto glow */
+/* contenedor 3D */
 
 .container{
 position:relative;
 z-index:2;
 max-width:600px;
 margin:auto;
-padding:60px 20px;
-animation:fadeIn 2s ease;
+padding:80px 20px;
+transform:rotateX(10deg);
 }
 
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
-}
+/* 404 glitch */
 
-h1{
-font-size:80px;
+.glitch{
+font-size:90px;
+font-weight:bold;
+position:relative;
 color:#ff1a4d;
-text-shadow:0 0 20px rgba(255,0,80,0.7);
-margin-bottom:10px;
+text-shadow:
+0 0 20px #ff004c,
+0 0 40px #ff004c,
+0 0 80px rgba(255,0,80,0.8);
+animation:glitch 2s infinite;
 }
+
+@keyframes glitch{
+0%{transform:translate(0);}
+20%{transform:translate(-2px,2px);}
+40%{transform:translate(-2px,-2px);}
+60%{transform:translate(2px,2px);}
+80%{transform:translate(2px,-2px);}
+100%{transform:translate(0);}
+}
+
+/* subtítulo */
 
 .sub{
 font-size:20px;
 color:#aaa;
 margin-bottom:30px;
+letter-spacing:2px;
 }
 
+/* mensaje */
+
 .mensaje{
-font-size:20px;
-color:#ddd;
+font-size:22px;
 margin-bottom:25px;
-line-height:1.5;
+color:#ddd;
+text-shadow:0 0 10px rgba(255,255,255,0.2);
 }
 
 .extra{
-font-size:16px;
+font-size:17px;
 color:#ff4d6d;
-opacity:0.9;
+margin-bottom:30px;
+text-shadow:0 0 15px rgba(255,0,80,0.6);
+}
+
+/* fecha glitch */
+
+.fecha{
+font-size:20px;
+color:#00f0ff;
+text-shadow:
+0 0 10px #00f0ff,
+0 0 20px #00f0ff,
+0 0 40px rgba(0,240,255,0.7);
+transition:0.3s;
 }
 
 /* corazones rotos */
@@ -73,7 +103,7 @@ color:#ff1a4d;
 font-size:18px;
 animation:fall linear forwards;
 opacity:0.8;
-text-shadow:0 0 10px rgba(255,0,80,0.6);
+text-shadow:0 0 15px rgba(255,0,80,0.8);
 }
 
 @keyframes fall{
@@ -90,8 +120,9 @@ opacity:0;
 
 <div class="container">
 
-<h1>404</h1>
-<p class="sub">Página no encontrada</p>
+<div class="glitch">404</div>
+
+<p class="sub">PÁGINA NO ENCONTRADA</p>
 
 <p class="mensaje">
 Hubo algo especial aquí…<br>
@@ -100,6 +131,10 @@ pero lo arruiné 💔
 
 <p class="extra">
 Lo siento mucho por el tiempo que te hice perder 💔
+</p>
+
+<p class="fecha" id="fecha">
+Volver el 10 de abril de 2021
 </p>
 
 </div>
@@ -111,9 +146,26 @@ Lo siento mucho por el tiempo que te hice perder 💔
 
 <script>
 
+/* glitch de fecha */
+
+let fecha = document.getElementById("fecha");
+
+setInterval(()=>{
+
+// glitch raro
+fecha.innerHTML = "Volver el 10 de anril de 2026";
+fecha.style.color = "#ff1a4d";
+
+setTimeout(()=>{
+fecha.innerHTML = "Volver el 10 de abril de 2021";
+fecha.style.color = "#00f0ff";
+},400);
+
+},4000);
+
 /* lluvia constante de corazones rotos */
 
-setInterval(createHeart, 200);
+setInterval(createHeart, 180);
 
 function createHeart(){
 

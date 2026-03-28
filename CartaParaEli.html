@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Eli</title>
+<title>Error 404</title>
 
 <style>
 
@@ -33,31 +33,37 @@ padding:40px 20px;
 }
 
 h1{
-font-size:28px;
-margin-bottom:15px;
+font-size:60px;
+color:#ff4d6d;
+margin-bottom:10px;
 }
 
-.mensaje{
-font-size:16px;
-color:#ccc;
+.sub{
+font-size:20px;
+color:#aaa;
 margin-bottom:25px;
 }
 
-/* reproductor */
+.mensaje{
+font-size:18px;
+color:#ddd;
+margin-bottom:30px;
+}
+
+/* reproductor gris */
 
 .player{
 display:flex;
 align-items:center;
 justify-content:center;
 gap:15px;
-background:rgba(255,255,255,0.05);
+background:#2b2b2b;
 padding:15px;
 border-radius:12px;
-margin-bottom:25px;
 }
 
 .playBtn{
-background:#ff1a4d;
+background:#555;
 border:none;
 color:white;
 font-size:18px;
@@ -69,15 +75,7 @@ transition:0.3s;
 }
 
 .playBtn:hover{
-background:#ff4d6d;
-}
-
-/* mensaje bloqueado */
-
-.locked{
-margin-top:30px;
-font-size:18px;
-color:#ff4d6d;
+background:#777;
 }
 
 /* corazones */
@@ -86,8 +84,9 @@ color:#ff4d6d;
 position:fixed;
 top:-10px;
 color:#ff4d6d;
-font-size:20px;
+font-size:18px;
 animation:fall linear forwards;
+opacity:0.8;
 }
 
 @keyframes fall{
@@ -104,25 +103,22 @@ opacity:0;
 
 <div class="container">
 
-<h1>Para Eli</h1>
+<h1>404</h1>
+<p class="sub">Página no encontrada</p>
 
 <p class="mensaje">
-Algo especial sigue aquí... pero tendrás que esperar 💔
+Hubo algo especial aquí…<br>
+pero lo arruiné.
 </p>
 
 <div class="player">
 <button class="playBtn" onclick="toggleAudio()">▶</button>
-<span>Canciones para ti</span>
+<span>Reproducir</span>
 </div>
 
 <audio id="audio">
 <source src="Audio_2026_03_16_01_08_32.mp3" type="audio/mpeg">
 </audio>
-
-<p class="locked">
-No disponible<br>
-Volver el 1 de abril
-</p>
 
 </div>
 
@@ -136,7 +132,6 @@ function toggleAudio(){
 if(audio.paused){
 audio.play();
 btn.innerHTML="⏸";
-startHearts();
 }else{
 audio.pause();
 btn.innerHTML="▶";
@@ -144,20 +139,17 @@ btn.innerHTML="▶";
 
 }
 
-/* autoplay silencioso */
+/* autoplay intento */
 
 window.addEventListener("load",()=>{
 audio.play().then(()=>{
 btn.innerHTML="⏸";
-startHearts();
 }).catch(()=>{});
 });
 
-/* lluvia de corazones */
+/* lluvia constante de corazones */
 
-function startHearts(){
-setInterval(createHeart, 300);
-}
+setInterval(createHeart, 250);
 
 function createHeart(){
 
@@ -167,6 +159,7 @@ heart.innerHTML = "❤";
 
 heart.style.left = Math.random() * 100 + "vw";
 heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+heart.style.fontSize = (Math.random() * 10 + 14) + "px";
 
 document.body.appendChild(heart);
 

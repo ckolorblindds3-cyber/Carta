@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Error 404</title>
+<title>...</title>
 
 <style>
 
@@ -16,85 +16,98 @@ padding:0;
 
 body{
 font-family:'Segoe UI',sans-serif;
-background:radial-gradient(circle at center, #050505, #000000);
+background:radial-gradient(circle at center, #050505, #000);
 color:white;
 text-align:center;
 overflow:hidden;
 perspective:1000px;
 }
 
-/* contenedor 3D */
+/* contenedor */
 
 .container{
 position:relative;
 z-index:2;
-max-width:600px;
+max-width:700px;
 margin:auto;
 padding:80px 20px;
-transform:rotateX(10deg);
+transform:rotateX(8deg);
 }
 
-/* 404 glitch */
+/* fecha principal glitch */
 
-.glitch{
-font-size:90px;
+.fecha-main{
+font-size:60px;
 font-weight:bold;
-position:relative;
-color:#ff1a4d;
+color:#00f0ff;
 text-shadow:
-0 0 20px #ff004c,
-0 0 40px #ff004c,
-0 0 80px rgba(255,0,80,0.8);
-animation:glitch 2s infinite;
-}
-
-@keyframes glitch{
-0%{transform:translate(0);}
-20%{transform:translate(-2px,2px);}
-40%{transform:translate(-2px,-2px);}
-60%{transform:translate(2px,2px);}
-80%{transform:translate(2px,-2px);}
-100%{transform:translate(0);}
-}
-
-/* subtítulo */
-
-.sub{
-font-size:20px;
-color:#aaa;
+0 0 20px #00f0ff,
+0 0 40px #00f0ff,
+0 0 80px rgba(0,240,255,0.8);
+animation:glitchFade 3s infinite;
 margin-bottom:30px;
-letter-spacing:2px;
 }
 
-/* mensaje */
+/* glitch aparece/desaparece */
+
+@keyframes glitchFade{
+0%{opacity:1; transform:translate(0);}
+20%{opacity:0.2; transform:translate(-3px,2px);}
+40%{opacity:1; transform:translate(3px,-2px);}
+60%{opacity:0.3; transform:translate(-2px,-2px);}
+80%{opacity:1; transform:translate(2px,2px);}
+100%{opacity:1; transform:translate(0);}
+}
+
+/* mensajes */
 
 .mensaje{
 font-size:22px;
-margin-bottom:25px;
+margin-bottom:20px;
 color:#ddd;
 text-shadow:0 0 10px rgba(255,255,255,0.2);
 }
 
 .extra{
-font-size:17px;
+font-size:18px;
 color:#ff4d6d;
-margin-bottom:30px;
-text-shadow:0 0 15px rgba(255,0,80,0.6);
+margin-bottom:40px;
+text-shadow:0 0 15px rgba(255,0,80,0.7);
 }
 
-/* fecha glitch */
+/* video */
 
-.fecha{
-font-size:20px;
-color:#00f0ff;
-text-shadow:
-0 0 10px #00f0ff,
-0 0 20px #00f0ff,
-0 0 40px rgba(0,240,255,0.7);
-transition:0.3s;
+.video-box{
+margin-top:30px;
 }
 
-/* corazones rotos */
+.video-box p{
+margin-bottom:15px;
+font-size:18px;
+color:#fff;
+text-shadow:0 0 10px rgba(255,255,255,0.3);
+}
+
+iframe{
+width:100%;
+height:315px;
+border-radius:12px;
+box-shadow:0 0 30px rgba(0,240,255,0.4);
+border:none;
+}
+
+/* fecha final */
+
+.footer{
+position:absolute;
+bottom:20px;
+width:100%;
+font-size:14px;
+color:#888;
+text-shadow:0 0 10px rgba(255,255,255,0.2);
+}
+
+/* corazones */
 
 .heart{
 position:fixed;
@@ -120,9 +133,9 @@ opacity:0;
 
 <div class="container">
 
-<div class="glitch">404</div>
-
-<p class="sub">PÁGINA NO ENCONTRADA</p>
+<div class="fecha-main">
+10/abril/2021
+</div>
 
 <p class="mensaje">
 Hubo algo especial aquí…<br>
@@ -133,37 +146,28 @@ pero lo arruiné 💔
 Lo siento mucho por el tiempo que te hice perder 💔
 </p>
 
-<p class="fecha" id="fecha">
-Volver el 10 de abril de 2021
-</p>
+<div class="video-box">
+<p>esta vez es de mi para ti...</p>
+
+<!-- REEMPLAZA VIDEO_URL -->
+<iframe src="VIDEO_URL" allowfullscreen></iframe>
 
 </div>
 
-<!-- audio oculto -->
+</div>
+
+<!-- audio -->
 <audio autoplay loop>
 <source src="Audio_2026_03_16_01_08_32.mp3" type="audio/mpeg">
 </audio>
 
+<div class="footer">
+24 de Mayo de 2025
+</div>
+
 <script>
 
-/* glitch de fecha */
-
-let fecha = document.getElementById("fecha");
-
-setInterval(()=>{
-
-// glitch raro
-fecha.innerHTML = "Volver el 10 de anril de 2026";
-fecha.style.color = "#ff1a4d";
-
-setTimeout(()=>{
-fecha.innerHTML = "Volver el 10 de abril de 2021";
-fecha.style.color = "#00f0ff";
-},400);
-
-},4000);
-
-/* lluvia constante de corazones rotos */
+/* lluvia corazones */
 
 setInterval(createHeart, 180);
 

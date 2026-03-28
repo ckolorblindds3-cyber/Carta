@@ -16,105 +16,85 @@ padding:0;
 
 body{
 font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#f9d5e5,#fceabb);
+background:black;
+color:white;
 text-align:center;
-padding:20px;
+overflow:hidden;
 }
 
+/* contenedor */
+
 .container{
+position:relative;
+z-index:2;
 max-width:600px;
 margin:auto;
-background:white;
-padding:25px;
-border-radius:18px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
+padding:40px 20px;
 }
 
 h1{
-font-size:26px;
-margin-bottom:10px;
+font-size:28px;
+margin-bottom:15px;
 }
 
 .mensaje{
 font-size:16px;
-color:#555;
-margin-bottom:20px;
+color:#ccc;
+margin-bottom:25px;
 }
 
-.corazon{
-font-size:28px;
-margin-bottom:10px;
-}
-
-/* reproductor compacto */
+/* reproductor */
 
 .player{
 display:flex;
 align-items:center;
 justify-content:center;
 gap:15px;
-background:#fff0f3;
+background:rgba(255,255,255,0.05);
 padding:15px;
 border-radius:12px;
-margin-bottom:20px;
+margin-bottom:25px;
 }
 
 .playBtn{
-background:#ff4d6d;
+background:#ff1a4d;
 border:none;
 color:white;
 font-size:18px;
-width:45px;
-height:45px;
+width:50px;
+height:50px;
 border-radius:50%;
 cursor:pointer;
+transition:0.3s;
 }
 
 .playBtn:hover{
-background:#e63956;
+background:#ff4d6d;
 }
 
-audio{
-display:none;
+/* mensaje bloqueado */
+
+.locked{
+margin-top:30px;
+font-size:18px;
+color:#ff4d6d;
 }
 
-/* botones */
+/* corazones */
 
-.buttons{
-margin-top:15px;
+.heart{
+position:fixed;
+top:-10px;
+color:#ff4d6d;
+font-size:20px;
+animation:fall linear forwards;
 }
 
-.download-btn{
-display:inline-block;
-padding:12px 20px;
-margin:8px;
-background:linear-gradient(135deg,#ff4d6d,#ff758f);
-color:white;
-text-decoration:none;
-border-radius:10px;
-font-size:15px;
-font-weight:500;
-box-shadow:0 5px 15px rgba(0,0,0,0.15);
+@keyframes fall{
+to{
+transform:translateY(100vh);
+opacity:0;
 }
-
-/* carta */
-
-.carta-img{
-width:100%;
-max-width:420px;
-margin-top:15px;
-border-radius:12px;
-box-shadow:0 5px 20px rgba(0,0,0,0.2);
-}
-
-@media(max-width:500px){
-
-.download-btn{
-width:90%;
-display:block;
-margin:10px auto;
-}
-
 }
 
 </style>
@@ -124,13 +104,10 @@ margin:10px auto;
 
 <div class="container">
 
-
-
 <h1>Para Eli</h1>
 
 <p class="mensaje">
-Grabé estas canciones para ti porque sé que te gustan.  
-Con mucho cariño.
+Algo especial sigue aquí... pero tendrás que esperar 💔
 </p>
 
 <div class="player">
@@ -142,21 +119,10 @@ Con mucho cariño.
 <source src="Audio_2026_03_16_01_08_32.mp3" type="audio/mpeg">
 </audio>
 
-<div class="buttons">
-<a href="Audio_2026_03_16_01_08_32.mp3" download class="download-btn">
-Descargar Canciones
-</a>
-</div>
-
-<h2 style="margin-top:25px">Espero puedas leer esto</h2>
-
-<img src="carta.jpg" class="carta-img">
-
-<div class="buttons">
-<a href="Para Liz 16 Marzo 26.pdf" download class="download-btn">
-Descargar Carta
-</a>
-</div>
+<p class="locked">
+No disponible<br>
+Volver el 1 de abril
+</p>
 
 </div>
 
@@ -170,6 +136,7 @@ function toggleAudio(){
 if(audio.paused){
 audio.play();
 btn.innerHTML="⏸";
+startHearts();
 }else{
 audio.pause();
 btn.innerHTML="▶";
@@ -177,11 +144,37 @@ btn.innerHTML="▶";
 
 }
 
-/* intento autoplay */
+/* autoplay silencioso */
 
 window.addEventListener("load",()=>{
-audio.play().catch(()=>{});
+audio.play().then(()=>{
+btn.innerHTML="⏸";
+startHearts();
+}).catch(()=>{});
 });
+
+/* lluvia de corazones */
+
+function startHearts(){
+setInterval(createHeart, 300);
+}
+
+function createHeart(){
+
+let heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "❤";
+
+heart.style.left = Math.random() * 100 + "vw";
+heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+}
 
 </script>
 

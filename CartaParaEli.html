@@ -16,77 +16,64 @@ padding:0;
 
 body{
 font-family:'Segoe UI',sans-serif;
-background:black;
+background:radial-gradient(circle at center, #0a0a0a, #000000);
 color:white;
 text-align:center;
 overflow:hidden;
 }
 
-/* contenedor */
+/* efecto glow */
 
 .container{
 position:relative;
 z-index:2;
 max-width:600px;
 margin:auto;
-padding:40px 20px;
+padding:60px 20px;
+animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 h1{
-font-size:60px;
-color:#ff4d6d;
+font-size:80px;
+color:#ff1a4d;
+text-shadow:0 0 20px rgba(255,0,80,0.7);
 margin-bottom:10px;
 }
 
 .sub{
 font-size:20px;
 color:#aaa;
-margin-bottom:25px;
-}
-
-.mensaje{
-font-size:18px;
-color:#ddd;
 margin-bottom:30px;
 }
 
-/* reproductor gris */
-
-.player{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:15px;
-background:#2b2b2b;
-padding:15px;
-border-radius:12px;
+.mensaje{
+font-size:20px;
+color:#ddd;
+margin-bottom:25px;
+line-height:1.5;
 }
 
-.playBtn{
-background:#555;
-border:none;
-color:white;
-font-size:18px;
-width:50px;
-height:50px;
-border-radius:50%;
-cursor:pointer;
-transition:0.3s;
+.extra{
+font-size:16px;
+color:#ff4d6d;
+opacity:0.9;
 }
 
-.playBtn:hover{
-background:#777;
-}
-
-/* corazones */
+/* corazones rotos */
 
 .heart{
 position:fixed;
 top:-10px;
-color:#ff4d6d;
+color:#ff1a4d;
 font-size:18px;
 animation:fall linear forwards;
 opacity:0.8;
+text-shadow:0 0 10px rgba(255,0,80,0.6);
 }
 
 @keyframes fall{
@@ -108,58 +95,35 @@ opacity:0;
 
 <p class="mensaje">
 Hubo algo especial aquí…<br>
-pero lo arruiné.
+pero lo arruiné 💔
 </p>
 
-<div class="player">
-<button class="playBtn" onclick="toggleAudio()">▶</button>
-<span>Reproducir</span>
+<p class="extra">
+Lo siento mucho por el tiempo que te hice perder 💔
+</p>
+
 </div>
 
-<audio id="audio">
+<!-- audio oculto -->
+<audio autoplay loop>
 <source src="Audio_2026_03_16_01_08_32.mp3" type="audio/mpeg">
 </audio>
 
-</div>
-
 <script>
 
-let audio = document.getElementById("audio");
-let btn = document.querySelector(".playBtn");
+/* lluvia constante de corazones rotos */
 
-function toggleAudio(){
-
-if(audio.paused){
-audio.play();
-btn.innerHTML="⏸";
-}else{
-audio.pause();
-btn.innerHTML="▶";
-}
-
-}
-
-/* autoplay intento */
-
-window.addEventListener("load",()=>{
-audio.play().then(()=>{
-btn.innerHTML="⏸";
-}).catch(()=>{});
-});
-
-/* lluvia constante de corazones */
-
-setInterval(createHeart, 250);
+setInterval(createHeart, 200);
 
 function createHeart(){
 
 let heart = document.createElement("div");
 heart.classList.add("heart");
-heart.innerHTML = "❤";
+heart.innerHTML = "💔";
 
 heart.style.left = Math.random() * 100 + "vw";
 heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-heart.style.fontSize = (Math.random() * 10 + 14) + "px";
+heart.style.fontSize = (Math.random() * 10 + 16) + "px";
 
 document.body.appendChild(heart);
 
